@@ -48,8 +48,8 @@ for article in soup.find_all('div', class_='job-item'):
         print(f'area : {area}')
 
         published_date = '20' + '-'.join(published_date.split()[1].split('.'))
-        pub_date = datetime.strptime(published_date, '%Y-%m-%d')
-        published_date = datetime.combine(pub_date, datetime.min.time())
+        published_date = datetime.strptime(published_date, '%Y-%m-%d')
+        published_date = datetime.combine(published_date, datetime.min.time())
         # published_date = datetime(published_date)
         print(f'pub date : {published_date}')
         print(f'deadline : {deadline}')
@@ -58,10 +58,10 @@ for article in soup.find_all('div', class_='job-item'):
         # print(f'date_created : {date_created}')
 
         #this works
-        # c.execute(
-        #     "INSERT OR IGNORE INTO blog_job_heykorean ('company_name', 'post_link', 'job_description', 'area', 'published_date', 'deadline', 'jobstyle', 'salary') VALUES  (?,?,?,?,?,?,?,?)", 
-        #     (company_title, link, job_desc, area, published_date, deadline, jobstyle, salary)
-        # )
+        c.execute(
+            "INSERT OR IGNORE INTO blog_job_heykorean ('company_name', 'post_link', 'job_description', 'area', 'published_date', 'deadline', 'jobstyle', 'salary') VALUES  (?,?,?,?,?,?,?,?)", 
+            (company_title, link, job_desc, area, published_date, deadline, jobstyle, salary)
+        )
 
         # this query causes error.. dont know why
         # c.execute("INSERT OR IGNORE INTO blog_job_heykorean ( company_name, post_link, job_description, area, published_date, deadline, jobstyle, salary) VALUES ( :company_name, :post_link, :job_description, :area, :published_date, :deadline, :jobstyle, :salary)", 

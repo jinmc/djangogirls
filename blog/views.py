@@ -7,6 +7,9 @@ from .forms import PostForm
 def base(request):
     return render(request, 'blog/base.html', {})
 
+def heykorean_jobs(request):
+    return render(request, 'blog/heykorean_jobs.html')
+
 def post_list(request):
     qs = Post.objects.all()
     qs = qs.filter(published_date__lte=timezone.now())

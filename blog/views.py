@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import Post
+from .models import Post, Job_Heykorean
 from django.utils import timezone
 from .forms import PostForm
 
@@ -8,7 +8,11 @@ def base(request):
     return render(request, 'blog/base.html', {})
 
 def heykorean_jobs(request):
-    return render(request, 'blog/heykorean_jobs.html')
+    qs = Job_Heykorean.objects.all()
+    qs = qs.order_by('-published_date')
+    return render(request, 'blog/heykorean_jobs.html', {
+        'h_jobs' : qs
+    })
 
 def post_list(request):
     qs = Post.objects.all()

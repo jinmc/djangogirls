@@ -21,7 +21,7 @@ class Job_Heykorean(models.Model):
     job_description = models.TextField()
     post_link = models.CharField(max_length=200)
     fetched_date = models.DateTimeField(default=timezone.now, null=True)
-    published_date = models.DateTimeField(blank=True, null=True)
+    published_date = models.DateField(blank=True, null=True)
     area = models.CharField(max_length=200, null=True)
     jobstyle = models.CharField(max_length=200, null=True)
     deadline = models.CharField(max_length=200, null=True)

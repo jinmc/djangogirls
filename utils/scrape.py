@@ -2,7 +2,8 @@ from bs4 import BeautifulSoup
 import requests
 import sqlite3
 import os
-from django.utils import timezone
+from datetime import date
+from datetime import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,12 +26,12 @@ dbfile = os.path.join(BASE_DIR, 'db.sqlite3')
 print(dbfile)
 conn = sqlite3.connect(dbfile)
 c = conn.cursor()
-# c.execute('DELETE FROM blog_job_heykorean;')
+c.execute('DELETE FROM blog_job_heykorean;')
 for article in soup.find_all('div', class_='job-item'):
     company_title = article.find('a').text.strip() # company title
     # link somethings dont have..
     try:
-        link = ''.join(['job.heykorean.com',article.find('div', class_='title').find('a').get('href')])
+        link = ''.join(['http://job.heykorean.com',article.find('div', class_='title').find('a').get('href')])
         job_desc = article.find('div', class_='title').find('a').text
         sub_info = article.find('div', class_='sub-info').find_all('span')
         area = sub_info[0].text
@@ -45,17 +46,22 @@ for article in soup.find_all('div', class_='job-item'):
         print(f'job description : {job_desc}')
         # date_created = article.find('div', class_='sub-info').find('a')
         print(f'area : {area}')
+
         published_date = '20' + '-'.join(published_date.split()[1].split('.'))
+        pub_date = datetime.strptime(published_date, '%Y-%m-%d')
+        published_date = datetime.combine(pub_date, datetime.min.time())
+        # published_date = datetime(published_date)
         print(f'pub date : {published_date}')
         print(f'deadline : {deadline}')
         print(f'jobstyle : {jobstyle}')
         print(f'salary : {salary}')
         # print(f'date_created : {date_created}')
 
-        c.execute(
-            "INSERT OR IGNORE INTO blog_job_heykorean ('company_name', 'post_link', 'job_description', 'area', 'published_date', 'deadline', 'jobstyle', 'salary') VALUES  (?,?,?,?,?,?,?,?)", 
-            (company_title, link, job_desc, area, published_date, deadline, jobstyle, salary)
-        )
+        #this works
+        # c.execute(
+        #     "INSERT OR IGNORE INTO blog_job_heykorean ('company_name', 'post_link', 'job_description', 'area', 'published_date', 'deadline', 'jobstyle', 'salary') VALUES  (?,?,?,?,?,?,?,?)", 
+        #     (company_title, link, job_desc, area, published_date, deadline, jobstyle, salary)
+        # )
 
         # this query causes error.. dont know why
         # c.execute("INSERT OR IGNORE INTO blog_job_heykorean ( company_name, post_link, job_description, area, published_date, deadline, jobstyle, salary) VALUES ( :company_name, :post_link, :job_description, :area, :published_date, :deadline, :jobstyle, :salary)", 

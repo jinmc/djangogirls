@@ -22,10 +22,10 @@ class Job_Heykorean(models.Model):
     post_link = models.CharField(max_length=200)
     fetched_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
-    area = models.CharField(max_length=200)
-    jobstyle = models.CharField(max_length=200)
-    deadline = models.CharField(max_length=200)
-    salary = models.CharField(max_length=200)
+    area = models.CharField(max_length=200, null=True)
+    jobstyle = models.CharField(max_length=200, null=True)
+    deadline = models.CharField(max_length=200, null=True)
+    salary = models.CharField(max_length=200, null=True)
 
     def str(self):
         return " ".join([company_name, job_description, str(published_date)])

@@ -15,3 +15,13 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+class Job_Heykorean(models.Model):
+    company_name = models.CharField(max_length=200)
+    job_description = models.TextField()
+    post_link = models.CharField(max_length=200)
+    fetched_date = models.DateTimeField(default=timezone.now)
+    published_date = models.DateTimeField(blank=True, null=True)
+
+    def str(self):
+        return " ".join([company_name, job_description, str(published_date)])

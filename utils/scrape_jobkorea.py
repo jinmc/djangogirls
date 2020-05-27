@@ -23,45 +23,49 @@ for i in range(10):
     general = soup.find('div', id='dev-gi-list')
 
     for job in general.find_all('tr', class_='devloopArea'):
-    # print(job)
-        tplco = job.find('td', class_='tplCo') # company name
-        company_name = tplco.find('a').text
-        count += 1
-        titBx = job.find('div', class_='titBx') # job title, desc
-        job_title = titBx.find('a').text
-        job_description = titBx.find('p', class_='dsc').text
-        post_link = 'http://www.jobkorea.co.kr/' + titBx.find('a').get('href')
-        etcs = titBx.find('p', class_='etc').find_all('span')
-        # print(etcs)
-        experience =  etcs.pop(0).text.replace('외', '').strip()
-        education = etcs.pop(0).text.replace('외', '').strip()
-        area = etcs.pop(0).text.replace('외', '').strip()
-        jobstyle = etcs.pop(0).text.replace('외', '').strip()
-        if etcs:
-            salary = etcs.pop(0).text.replace('외', '').strip()
-        odd = job.find('td', class_='odd')
-        # print(odd)
-        deadline = odd.find('span', class_='date').text.replace('~','')
-        deadline = deadline.split('(')[0]
-        # print(deadline)
+        try:
 
-        published_date = odd.find('span', class_='time').text.replace('등록', '').strip()
-        # print(published_date)
+        # print(job)
+            tplco = job.find('td', class_='tplCo') # company name
+            company_name = tplco.find('a').text
+            count += 1
+            titBx = job.find('div', class_='titBx') # job title, desc
+            job_title = titBx.find('a').text
+            job_description = titBx.find('p', class_='dsc').text
+            post_link = 'http://www.jobkorea.co.kr/' + titBx.find('a').get('href')
+            etcs = titBx.find('p', class_='etc').find_all('span')
+            # print(etcs)
+            experience =  etcs.pop(0).text.replace('외', '').strip()
+            education = etcs.pop(0).text.replace('외', '').strip()
+            area = etcs.pop(0).text.replace('외', '').strip()
+            jobstyle = etcs.pop(0).text.replace('외', '').strip()
+            if etcs:
+                salary = etcs.pop(0).text.replace('외', '').strip()
+            odd = job.find('td', class_='odd')
+            # print(odd)
+            deadline = odd.find('span', class_='date').text.replace('~','')
+            deadline = deadline.split('(')[0]
+            # print(deadline)
 
-        # print(titBx)
-        # print(tplco)
-        print()
-        print(company_name, count)
-        print(job_title)
-        print(job_description)
-        print(post_link)
-        print(published_date)
-        print(area)
-        print(jobstyle)
-        print(deadline)
-        print(salary)
-        print(experience)
-        print(education)
+            published_date = odd.find('span', class_='time').text.replace('등록', '').strip()
+            # print(published_date)
+
+            # print(titBx)
+            # print(tplco)
+            print()
+            print(company_name, count)
+            print(job_title)
+            print(job_description)
+            print(post_link)
+            print(published_date)
+            print(area)
+            print(jobstyle)
+            print(deadline)
+            print(salary)
+            print(experience)
+            print(education)
+        except Exception as e:
+            print(e)
         # print(etc)
         # break
     print(f'count : {count}')

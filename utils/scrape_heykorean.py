@@ -41,20 +41,20 @@ for article in soup.find_all('div', class_='job-item'):
         jobCondition = article.find('div', class_='jobCondition').find_all('span')
         jobstyle = jobCondition[0].text
         salary = jobCondition[1].text
-        print(f'company_title : {company_title}')
-        print(f'link : {link}')
-        print(f'job description : {job_desc}')
+        # print(f'company_title : {company_title}')
+        # print(f'link : {link}')
+        # print(f'job description : {job_desc}')
         # date_created = article.find('div', class_='sub-info').find('a')
-        print(f'area : {area}')
+        # print(f'area : {area}')
 
         published_date = '20' + '-'.join(published_date.split()[1].split('.'))
         published_date = datetime.strptime(published_date, '%Y-%m-%d')
         published_date = datetime.combine(published_date, datetime.min.time())
         # published_date = datetime(published_date)
-        print(f'pub date : {published_date}')
-        print(f'deadline : {deadline}')
-        print(f'jobstyle : {jobstyle}')
-        print(f'salary : {salary}')
+        # print(f'pub date : {published_date}')
+        # print(f'deadline : {deadline}')
+        # print(f'jobstyle : {jobstyle}')
+        # print(f'salary : {salary}')
         # print(f'date_created : {date_created}')
 
         #this works
@@ -69,7 +69,7 @@ for article in soup.find_all('div', class_='job-item'):
         # c.execute()
     except Exception as e:
         print(e)
-        print()
+        # print()
 conn.commit()
     # print(article) # print everything
     # print("linebreak-------------")

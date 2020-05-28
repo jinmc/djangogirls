@@ -1,11 +1,18 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import Post, Job_Heykorean
+from .models import Post, Job_Heykorean, Job_Jobkorea
 from django.utils import timezone
 from .forms import PostForm
 
 # Create your views here.
 def base(request):
     return render(request, 'blog/base.html', {})
+
+def jobkorea_jobs(request):
+    qs = Job_Jobkorea.objects.all()
+    # qs = qs.order_by('-published_date')
+    return render(request, 'blog/jobkorea_jobs.html', {
+        'jk_jobs' : qs
+    })
 
 def heykorean_jobs(request):
     qs = Job_Heykorean.objects.all()

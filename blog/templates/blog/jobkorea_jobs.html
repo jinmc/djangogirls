@@ -1,0 +1,40 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <h3>Jobkorea jobs (IT)</h3>
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Comapny Name</th>
+      <th scope="col">Job title</th>
+      <th scope="col">Job Description</th>
+      <th scope="col">Published Date</th>
+      <th scope="col">Area</th>
+      <th scope="col">Job Style</th>
+      <th scope="col">DeadLine</th>
+      <th scope="col">Eduction</th>  
+      <th scope="col">Experience</th>    
+      <th scope="col">Salary</th>
+      <th scope="col">Post Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for job in jk_jobs %}
+    <tr>
+      <td>{{ job.company_name }}</td>
+      <td>{{ job.job_title }}</td>      
+      <td>{{ job.job_description }}</td>
+      <td>{{ job.published_date }}</td>
+      <td>{{ job.area }}</td>
+      <td>{{ job.jobstyle }}</td>
+      <td>{{ job.deadline }}</td>
+      <td>{{ job.education }}</td>
+      <td>{{ job.experience }}</td>
+      <td>{{ job.salary }}</td>
+      <td><a href="{{ job.post_link }}">link</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+    
+{%  endblock %}

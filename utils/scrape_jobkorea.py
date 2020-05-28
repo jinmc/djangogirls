@@ -10,6 +10,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 url = 'http://www.jobkorea.co.kr/recruit/joblist?menucode=duty&dutyCtgr=10016'
 page_count = 1
 
+dbfile = os.path.join(BASE_DIR, 'db.sqlite3')
+print(dbfile)
+conn = sqlite3.connect(dbfile)
+c = conn.cursor()
+c.execute('DELETE FROM blog_job_jobkorea;')
 count = 0
 for i in range(10):
     if i == 1:
@@ -64,10 +69,17 @@ for i in range(10):
             print(salary)
             print(experience)
             print(education)
+                #this works
+            c.execute(
+                "INSERT OR IGNORE INTO blog_job_jobkorea ('company_name', 'job_title', 'post_link', 'published_date', 'job_description', 'area', 'jobstyle', 'deadline', 'salary', 'education', 'experience') VALUES  (?,?,?,?,?,?,?,?,?,?,?)", 
+                (company_name, job_title, post_link, published_date, job_description, area, jobstyle, deadline, salary, education, experience)
+            )
+
         except Exception as e:
             print(e)
         # print(etc)
         # break
+
     print(f'count : {count}')
 
 
@@ -133,7 +145,7 @@ for job in general.find_all('tr', class_='devloopArea'):
     # print(company_name, count)
     # print(job_title)
     # break
-print(f'count : {count}')
+    
 '''
 for article in soup.find('div', id='dev-gi-list'):
     # print(article.find('div', class_='company-title').text.strip()) # company title

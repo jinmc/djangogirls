@@ -32,14 +32,14 @@ class Job_Heykorean(models.Model):
 
 class Job_JobKorea(models.Model):
     company_name = models.CharField(max_length=200)
-    company_etc = models.CharField(max_lenght=200, null=True)
+    company_etc = models.CharField(max_length=200, null=True)
     job_title = models.CharField(max_length=200)
     job_description = models.TextField()
     post_link = models.CharField(max_length=200)
-    published_date = models.DateTimeField(blank=True, null=True)
+    published_date = models.CharField(max_length=200, null=True)
     area = models.CharField(max_length=200, null=True)
     jobstyle = models.CharField(max_length=200, null=True)
-    deadline = models.DateField(blank=True, null=True)
+    deadline = models.CharField(max_length=200, null=True)
     salary = models.CharField(max_length=200, null=True)
     eduction = models.CharField(max_length=200, null=True)
     experience = models.CharField(max_length=200, null=True)

@@ -30,7 +30,7 @@ class Job_Heykorean(models.Model):
     def str(self):
         return " ".join([company_name, job_description, str(published_date)])
 
-class Job_JobKorea(models.Model):
+class Job_Jobkorea(models.Model):
     company_name = models.CharField(max_length=200)
     company_etc = models.CharField(max_length=200, null=True)
     job_title = models.CharField(max_length=200)
@@ -41,7 +41,7 @@ class Job_JobKorea(models.Model):
     jobstyle = models.CharField(max_length=200, null=True)
     deadline = models.CharField(max_length=200, null=True)
     salary = models.CharField(max_length=200, null=True)
-    eduction = models.CharField(max_length=200, null=True)
+    education = models.CharField(max_length=200, null=True)
     experience = models.CharField(max_length=200, null=True)
     etc = models.CharField(max_length=200, null=True)
 

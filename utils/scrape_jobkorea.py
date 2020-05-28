@@ -74,14 +74,15 @@ for i in range(10):
                 "INSERT OR IGNORE INTO blog_job_jobkorea ('company_name', 'job_title', 'post_link', 'published_date', 'job_description', 'area', 'jobstyle', 'deadline', 'salary', 'education', 'experience') VALUES  (?,?,?,?,?,?,?,?,?,?,?)", 
                 (company_name, job_title, post_link, published_date, job_description, area, jobstyle, deadline, salary, education, experience)
             )
-
         except Exception as e:
             print(e)
         # print(etc)
-        # break
 
     print(f'count : {count}')
-
+conn.commit()
+    # print(article) # print everything
+    # print("linebreak-------------")
+conn.close()
 
 print("dying now...")
 sys.exit()

@@ -36,7 +36,6 @@
   </thead>
   <tbody>
     {% for job in page_obj %}
-    <tr>
       <tr>
         <td>{{ job.company_name }}</td>
         <td>{{ job.job_title }}</td>
@@ -54,7 +53,6 @@
           {{ job.job_description }}
         </td>
       </tr>
-    </tr>
     {% endfor %}
   </tbody>
 </table>

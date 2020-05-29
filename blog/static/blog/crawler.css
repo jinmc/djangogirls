@@ -16,14 +16,17 @@ body {
 
 th, td {
    text-align: center; 
+   vertical-align: middle;
 }
+
 
 
 #job_desc {
     text-align: center;
 }
 
-th {
+.table .thead-dark tr th {
+    vertical-align: middle;
     position: sticky;
     top: 0;
 }

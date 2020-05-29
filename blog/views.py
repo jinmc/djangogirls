@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
+from django.core.paginator import Paginator
 from .models import Post, Job_Heykorean, Job_Jobkorea
 from django.utils import timezone
 from .forms import PostForm
@@ -9,9 +10,15 @@ def base(request):
 
 def jobkorea_jobs(request):
     qs = Job_Jobkorea.objects.all()
+    paginator = Paginator(qs, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     # qs = qs.order_by('-published_date')
+    # return render(request, 'blog/jobkorea_jobs.html', {
+    #     'jk_jobs' : qs
+    # })
     return render(request, 'blog/jobkorea_jobs.html', {
-        'jk_jobs' : qs
+        'page_obj' : page_obj
     })
 
 def heykorean_jobs(request):

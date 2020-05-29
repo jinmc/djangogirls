@@ -1,0 +1,29 @@
+nav a {
+    font-family: 'Roboto Slab', serif;
+    color: white;
+}
+
+ .jumbotron {
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-top: 30px;
+} 
+
+body { 
+    padding-top: 65px; 
+}
+
+th, td {
+   text-align: center; 
+}
+
+
+#job_desc {
+    text-align: center;
+}
+
+th {
+    position: sticky;
+    top: 0;
+}

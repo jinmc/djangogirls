@@ -3,20 +3,29 @@ from django.core.paginator import Paginator
 from .models import Post, Job_Heykorean, Job_Jobkorea
 from django.utils import timezone
 from .forms import PostForm
+from .filters import JobkoreaFilter
 
 # Create your views here.
 def base(request):
     return render(request, 'blog/base.html', {})
 
 def jobkorea_jobs(request):
+    model = Job_Jobkorea
+    template_name = 'blog/jobkorea_jobs.html'
+    
     qs = Job_Jobkorea.objects.all()
-    paginator = Paginator(qs, 10)
+    filtered_qs = JobkoreaFilter(request.GET, queryset=qs).qs
+    # return render(request, 'blog/jobkorea_jobs.html', {
+    #     'page_obj' : filtered_qs
+    # })
+
+    paginator = Paginator(filtered_qs, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     # qs = qs.order_by('-published_date')
-    # return render(request, 'blog/jobkorea_jobs.html', {
-    #     'jk_jobs' : qs
-    # })
+    # # return render(request, 'blog/jobkorea_jobs.html', {
+    # #     'jk_jobs' : qs
+    # # })
     return render(request, 'blog/jobkorea_jobs.html', {
         'page_obj' : page_obj
     })

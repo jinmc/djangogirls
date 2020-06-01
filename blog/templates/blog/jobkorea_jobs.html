@@ -1,12 +1,13 @@
 {% extends "blog/base.html" %}
+{% load jobkorea_tags %}
 
 {% block content %}
 <h3>Jobkorea jobs (IT)</h3>
 <div class="pagination">
   <span class="step-links">
     {% if page_obj.has_previous %}
-    <a href="?page=1">&laquo; first</a>
-    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+    <a href="?{% param_replace page=1 %}">&laquo; first</a>
+    <a href="?{% param_replace page=page_obj.previous_page_number %}">previous</a>
     {% endif %}
 
     <span class="current">
@@ -14,21 +15,25 @@
     </span>
 
     {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}">next</a>
-    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+    <a href="?{% param_replace page=page_obj.next_page_number %}">next</a>
+    <a href="?{% param_replace page=paginator.num_pages %}">last &raquo;</a>
     {% endif %}
   </span>
 </div>
 <form action="">
-  <label for="fname">Job Description : </label>
+  <label for="company_name">Company name : </label>
+  <input type="text" id="company_name" name="company_name__contains" value={{ request.GET.company_name__contains }}>
+  <label for="job_title">Job Title : </label>
+  <input type="text" id="job_title" name="job_title__contains" value={{ request.GET.job_title__contains }}>
+  <label for="job_description">Job Description : </label>
   <input type="text" id="job_description" name="job_description__contains" value={{ request.GET.job_description__contains }}>
-  <label for="lname">Area : </label>
+  <br><label for="area">Area : </label>
   <input type="text" id="area" name="area__contains" value={{ request.GET.area__contains }}>
-  <label for="lname">Education : </label>
+  <label for="education">Education : </label>
   <input type="text" id="education" name="education__contains" value={{ request.GET.education__contains }}>
-  <label for="lname">Experience : </label>
+  <label for="experience">Experience : </label>
   <input type="text" id="experience" name="experience__contains" value={{ request.GET.experience__contains }}>
-  <input type="submit" value="Submit">
+  <br><input type="submit" value="Submit">
 </form> <br>
 
 <table class="table table-hover table-striped sticky">
@@ -71,8 +76,8 @@
 <div class="pagination">
   <span class="step-links">
     {% if page_obj.has_previous %}
-    <a href="?page=1">&laquo; first</a>
-    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+    <a href="?{% param_replace page=1 %}">&laquo; first</a>
+    <a href="?{% param_replace page=page_obj.previous_page_number %}">previous</a>
     {% endif %}
 
     <span class="current">
@@ -80,8 +85,8 @@
     </span>
 
     {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}">next</a>
-    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+    <a href="?{% param_replace page=page_obj.next_page_number %}">next</a>
+    <a href="?{% param_replace page=paginator.num_pages %}">last &raquo;</a>
     {% endif %}
   </span>
 </div>

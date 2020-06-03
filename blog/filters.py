@@ -13,4 +13,5 @@ class JobkoreaFilter(django_filters.FilterSet):
             'area': ['contains'],
             'experience': ['contains'],
             'education': ['contains'],
+            'salary': ['contains'],
         }

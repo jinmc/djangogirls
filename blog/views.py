@@ -15,6 +15,10 @@ def jobkorea_jobs(request):
     
     qs = Job_Jobkorea.objects.all()
     filtered_qs = JobkoreaFilter(request.GET, queryset=qs).qs
+
+    sortby = request.GET.get('sortby')
+    if sortby:
+        filtered_qs = filtered_qs.order_by(sortby)
     # return render(request, 'blog/jobkorea_jobs.html', {
     #     'page_obj' : filtered_qs
     # })

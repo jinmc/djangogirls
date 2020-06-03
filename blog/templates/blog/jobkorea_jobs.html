@@ -1,22 +1,19 @@
 {% extends "blog/base.html" %}
 {% load jobkorea_tags %}
-
 {% block content %}
-<h3>Jobkorea jobs (IT)</h3>
+<h3>Jobkorea jobs (IT) </h3>
 <div class="pagination">
   <span class="step-links">
     {% if page_obj.has_previous %}
     <a href="?{% param_replace page=1 %}">&laquo; first</a>
     <a href="?{% param_replace page=page_obj.previous_page_number %}">previous</a>
     {% endif %}
-
     <span class="current">
       Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
     </span>
-
     {% if page_obj.has_next %}
     <a href="?{% param_replace page=page_obj.next_page_number %}">next</a>
-    <a href="?{% param_replace page=paginator.num_pages %}">last &raquo;</a>
+    <a href="?{% param_replace page=page_obj.paginator.num_pages %}">last &raquo;</a>
     {% endif %}
   </span>
 </div>
@@ -33,8 +30,34 @@
   <input type="text" id="education" name="education__contains" value={{ request.GET.education__contains }}>
   <label for="experience">Experience : </label>
   <input type="text" id="experience" name="experience__contains" value={{ request.GET.experience__contains }}>
+  <label for="salary">Salary : </label>
+  <input type="text" id="salary" name="salary__contains" value={{ request.GET.salary__contains }}>
   <br><input type="submit" value="Submit">
-</form> <br>
+</form> 
+Sort by : {{ request.GET.sortby }}<br>
+<a href="?{% param_replace sortby='' %}">
+<button href="/default" type="button">Default</button>
+</a>
+<a href="?{% param_replace sortby='published_date' %}">
+<button type="button">Published</button>
+</a>
+<a href="?{% param_replace sortby='-published_date' %}">
+<button type="button">Published(dsc)</button>
+</a>
+<a href="?{% param_replace sortby='deadline' %}">
+<button type="button">DeadLine</button>
+</a>
+<a href="?{% param_replace sortby='-deadline' %}">
+<button type="button">DeadLine(dsc)</button>
+</a>
+<a href="?{% param_replace sortby='salary' %}">
+<button type="button">Salary</button>
+</a>
+<a href="?{% param_replace sortby='-salary' %}">
+<button type="button">Salary(dsc)</button>
+</a>
+<br>
+{{ page_obj.paginator.per_page }} posts out of {{ page_obj.paginator.count }} posts
 
 <table class="table table-hover table-striped sticky">
   <thead class="thead-dark">
@@ -79,14 +102,12 @@
     <a href="?{% param_replace page=1 %}">&laquo; first</a>
     <a href="?{% param_replace page=page_obj.previous_page_number %}">previous</a>
     {% endif %}
-
     <span class="current">
       Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
     </span>
-
     {% if page_obj.has_next %}
     <a href="?{% param_replace page=page_obj.next_page_number %}">next</a>
-    <a href="?{% param_replace page=paginator.num_pages %}">last &raquo;</a>
+    <a href="?{% param_replace page=page_obj.paginator.num_pages %}">last &raquo;</a>
     {% endif %}
   </span>
 </div>
